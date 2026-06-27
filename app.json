@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Sparta",
+    "name": "Sparta-Colaboradores",
     "slug": "Sparta",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,6 +10,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.spectro451.spartacolaboradores",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -20,6 +21,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "681966e7-963b-4234-93cd-7424de7fb750"
+      }
+    },
+    "owner": "spectro451"
   }
 }

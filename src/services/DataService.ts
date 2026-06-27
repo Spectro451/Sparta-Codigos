@@ -48,7 +48,7 @@ async function _getServerMeta(): Promise<{ etag: string; date: string }> {
   const lastModified =
     res.headers.get("Last-Modified") ?? new Date().toISOString();
   const date = new Date(lastModified).toISOString().split("T")[0];
-  const etag = res.headers.get("ETag") ?? date;
+  const etag = res.headers.get("ETag") ?? lastModified;
   return { etag, date };
 }
 
