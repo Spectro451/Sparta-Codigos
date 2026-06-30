@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import { colors } from "../../constants/colors";
 import { SCAN_DEBOUNCE_MS } from "../../constants/config";
-import { CameraView, useCameraPermissions } from "expo-camera";
+import { useCameraPermissions } from "expo-camera";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useIsFocused } from "@react-navigation/native";
+import { BarcodeCamera } from "./BarcodeCamera";
 import { CameraPermission } from "./CameraPermission";
 import { ScanOverlay } from "./ScanOverlay";
 import { ManualEntryView } from "./ManualEntryView";
@@ -50,13 +51,7 @@ export function ScannerScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      {isFocused && (
-        <CameraView
-          style={StyleSheet.absoluteFill}
-          facing="back"
-          onBarcodeScanned={({ data }) => handleScan(data)}
-        />
-      )}
+      <BarcodeCamera active={isFocused} onScan={handleScan} />
       <ScanOverlay onManualPress={() => setModo("manual")} />
     </View>
   );

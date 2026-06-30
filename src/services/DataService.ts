@@ -113,6 +113,10 @@ function _getEstiloBase(estilo: string): string | null {
   return base.length >= estilo.length / 2 ? base : null;
 }
 
+function _normalizeBarcode(code: string): string {
+  return code.replace(/^0+/, "");
+}
+
 async function _isSanAntonio(): Promise<boolean> {
   if (_tiendaCache === undefined) {
     const stored = await AsyncStorage.getItem(CURRENT_TIENDA_KEY);
@@ -142,7 +146,11 @@ export const DataService = {
   ): Promise<ProductoDetalle | "SIN_DATOS" | null> {
     if (!(await _isSanAntonio())) return "SIN_DATOS";
 
-    const producto = _productos.find((p) => p.codebar === code);
+    const objetivo = _normalizeBarcode(code);
+    if (!objetivo) return null;
+    const producto = _productos.find(
+      (p) => _normalizeBarcode(p.codebar) === objetivo,
+    );
     if (!producto) return null;
 
     const tallas = _productos.filter((p) => p.estilo === producto.estilo);
