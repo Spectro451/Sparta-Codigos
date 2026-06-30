@@ -4,8 +4,14 @@ import { BarcodeFormat, DecodeHintType } from "@zxing/library";
 import type { BarcodeCameraProps } from "./BarcodeCamera.types";
 
 function getBarcodeFormats(): BarcodeFormat[] {
-  return [BarcodeFormat.UPC_A, BarcodeFormat.EAN_13];
+  return [
+    BarcodeFormat.UPC_A,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.CODE_39,
+  ];
 }
+
 
 export function BarcodeCamera({ active, onScan }: BarcodeCameraProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
